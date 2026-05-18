@@ -12,7 +12,7 @@ export default function App() {
 
 	return (
 		<nav className="sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg">
-			<header className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+			<header className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 lg:px-0">
 				<div className="flex justify-between items-center gap-4">
 					<button
 						className="md:hidden"
