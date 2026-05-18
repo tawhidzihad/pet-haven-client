@@ -5,14 +5,14 @@ import Image from "next/image";
 const PetCareTipsSection = () => {
 	return (
 		<div className="bg-[#002449] dark:bg-black py-15">
-			<div className="relative h-[140vh] md:h-[50vh] lg:h-[60vh] overflow-hidden">
+			<div className="relative h-[170vh] md:h-[50vh] lg:h-[60vh] overflow-hidden">
 				<div className="absolute inset-0">
 					<Image
 						src="/petcaretips.avif"
 						className="h-full w-full object-cover opacity-30"
 						alt="petcaretips background"
-						width={1000}
-						height={1000}
+						width={900}
+						height={900}
 						loading="eager"
 					/>
 				</div>

@@ -35,7 +35,13 @@ const BannerSection = () => {
 
 						<div>
 							<Link href={"/all-pets"}>
-								<Button className={"hover:scale-105 duration-500 transition-all ease-in-out"} variant="secondary" size="lg">
+								<Button
+									className={
+										"hover:scale-105 duration-500 transition-all ease-in-out"
+									}
+									variant="secondary"
+									size="lg"
+								>
 									Adopt Now
 									<MdPets />
 								</Button>
@@ -63,6 +69,7 @@ const BannerSection = () => {
 							width={500}
 							height={500}
 							className="h-60 lg:h-100 w-auto rounded-3xl opacity-80"
+							loading="eager"
 						/>
 					</motion.div>
 				</div>
