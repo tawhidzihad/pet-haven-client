@@ -11,7 +11,7 @@ const AdoptionProcess = () => {
 						<Chip className="text-blue-500">Adoption Process</Chip>
 					</div>
 					<h2 className="text-4xl md:text-6xl text-blue-500 font-bold">
-						<span className="text-white">How</span> It Works
+						<span className="text-white">How</span> It Works?
 					</h2>
 				</div>
 
@@ -62,7 +62,7 @@ const AdoptionProcess = () => {
 							</h3>
 							<p className="text-white/90 max-w-50 mx-auto">
 								Submit an adoption application and tell us about
-								yourself.n.
+								yourself.
 							</p>
 						</div>
 
