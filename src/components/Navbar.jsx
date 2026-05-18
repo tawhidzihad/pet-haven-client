@@ -46,14 +46,14 @@ export default function App() {
 					</button>
 
 					<div className="flex items-center gap-3">
-						{/* <MdPets className="h-9 w-auto"/> */}
-
-						<Image
-							src={"/pethouse.png"}
-							alt="Pet Haven Logo"
-							width={50}
-							height={50}
-						/>
+						<Link href={"/"}>
+							<Image
+								src={"/pethouse.png"}
+								alt="Pet Haven Logo"
+								width={50}
+								height={50}
+							/>
+						</Link>
 						<p className="font-semibold">Pet Haven</p>
 					</div>
 				</div>

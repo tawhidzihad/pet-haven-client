@@ -1,3 +1,9 @@
+import BannerSection from "@/components/Sections/BannerSection";
+
 export default function Home() {
-	return <div>Home</div>;
+	return (
+		<>
+			<BannerSection></BannerSection>
+		</>
+	);
 }
