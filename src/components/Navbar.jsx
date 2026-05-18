@@ -48,7 +48,7 @@ export default function App() {
 					<div className="flex items-center gap-3">
 						<Link href={"/"}>
 							<Image
-								src={"/pethouse.png"}
+								src={"/pethaven.png"}
 								alt="Pet Haven Logo"
 								width={50}
 								height={50}

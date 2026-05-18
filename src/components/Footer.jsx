@@ -46,7 +46,7 @@ const Footer = () => {
 				</div>
 				<div className="mt-16 pt-8 border-t border-zinc-700 flex flex-col md:flex-row justify-center items-center gap-4 text-gray-500 text-sm px-0 md:px-4 lg:px-0">
 					<p className="text-gray-500">
-						© {new Date().getFullYear()} All rights reserved. Pet Haven.
+						© {new Date().getFullYear()} All rights reserved by Pet Haven.
 					</p>
 				</div>
 			</div>

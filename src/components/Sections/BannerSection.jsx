@@ -21,7 +21,7 @@ const BannerSection = () => {
 						</div>
 
 						<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white">
-							Find Your <br />
+							Find Your, <br />
 							<span className="text-blue-500 border-b-2">
 								New Best Friend
 							</span>
