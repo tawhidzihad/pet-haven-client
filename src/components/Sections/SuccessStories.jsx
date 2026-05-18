@@ -5,20 +5,20 @@ import Image from "next/image";
 const SuccessStories = () => {
 	return (
 		<div className="bg-[#002449] dark:bg-black py-10 px-5 lg:px-0">
-			<div className="max-w-7xl mx-auto space-y-10">
+			<div className="max-w-7xl mx-auto space-y-15">
 				<div className="text-center">
 					<Chip color="success">Success Stories</Chip>
 				</div>
 
 				<div className="grid gap-5 lg:gap-0 md:grid-cols-2">
-					<div className="flex">
+					<div className="flex justify-center items-center">
 						<div className="overflow-hidden rounded-4xl opacity-80">
 							<Image
 								src={"/success-stories.avif"}
 								alt="Success Stories Banner"
-								width={500}
-								height={500}
-								className="hover:scale-105 transition-all duration-500"
+								width={360}
+								height={360}
+								className="h-115 w-auto hover:scale-105 transition-all duration-500"
 							/>
 						</div>
 					</div>
@@ -83,7 +83,7 @@ const SuccessStories = () => {
 								<div className="flex gap-4">
 									<div className="w-full md:w-2/4 opacity-80">
 										<Image
-											src={"/success-pet-3.avif"}
+											src={"/success-pet-2.avif"}
 											alt="Successfully Adopted Pet"
 											width={100}
 											height={100}
