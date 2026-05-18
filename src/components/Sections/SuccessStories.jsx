@@ -24,7 +24,7 @@ const SuccessStories = () => {
 					</div>
 
 					<div className="space-y-4">
-						<div>
+						<div className="space-y-5">
 							<h2 className="text-4xl md:text-5xl text-blue-500 font-bold">
 								Every <span className="text-white">Adoption</span> Has a
 								Story!

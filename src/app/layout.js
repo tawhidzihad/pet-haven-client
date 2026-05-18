@@ -1,7 +1,13 @@
+import dns from "node:dns";
+
+dns.setDefaultResultOrder("ipv4first");
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
+
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import NextThemeProvider from "@/providers/NextThemeProvider";
 import { Poppins } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -46,6 +52,7 @@ export default function RootLayout({ children }) {
 					<main>{children}</main>
 					<Footer></Footer>
 				</NextThemeProvider>
+				<Toaster />
 			</body>
 		</html>
 	);

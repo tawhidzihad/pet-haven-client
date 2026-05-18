@@ -6,6 +6,7 @@ import { Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { SiDatadog } from "react-icons/si";
 
 export default function App() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -75,7 +76,9 @@ export default function App() {
 					<div className="flex items-center gap-4">
 						<Link href="/login">Login</Link>
 						<Link href={"/signup"}>
-							<Button>Get Started</Button>
+							<Button className={"bg-blue-500 font-normal"}>
+								Get Started <SiDatadog />
+							</Button>
 						</Link>
 					</div>
 				</div>
@@ -91,15 +94,23 @@ export default function App() {
 							<NavLink href={"/all-pets"}>All Pets</NavLink>
 						</li>
 
-						<li>
+						{/* <li>
 							<NavLink href={"/login"} className={"inline-block"}>
 								Login
 							</NavLink>
-						</li>
+						</li> */}
 					</ul>
-					<div className="mt-4 p-4 flex flex-col gap-2 border-t">
-						<Link href="/signup">
-							<Button className="w-full">Sign Up</Button>
+					<div className="p-4 flex justify-between items-center gap-2 border-t">
+						<Link href={"/login"}>
+							<Button className={"bg-blue-500 font-normal w-full"}>
+								Login
+							</Button>
+						</Link>
+
+						<Link href={"/signup"}>
+							<Button className={"bg-blue-500 font-normal w-full"}>
+								Get Started <SiDatadog />
+							</Button>
 						</Link>
 					</div>
 				</div>
