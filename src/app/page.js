@@ -1,4 +1,5 @@
 import BannerSection from "@/components/Sections/BannerSection";
+import SuccessStories from "@/components/Sections/SuccessStories";
 import WhyAdoptPets from "@/components/Sections/WhyAdoptPets";
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
 			<BannerSection></BannerSection>
 			{/* Featured Section */}
 			<WhyAdoptPets></WhyAdoptPets>
+			<SuccessStories></SuccessStories>
 		</>
 	);
 }
