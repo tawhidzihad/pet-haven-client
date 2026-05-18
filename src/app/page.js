@@ -2,6 +2,7 @@ import BannerSection from "@/components/Sections/BannerSection";
 import PetCareTipsSection from "@/components/Sections/PetCareTipsSection";
 import SuccessStories from "@/components/Sections/SuccessStories";
 import WhyAdoptPets from "@/components/Sections/WhyAdoptPets";
+import WhyChooseUs from "@/components/Sections/WhyChooseUs";
 
 export default function Home() {
 	return (
@@ -11,6 +12,7 @@ export default function Home() {
 			<WhyAdoptPets></WhyAdoptPets>
 			<SuccessStories></SuccessStories>
 			<PetCareTipsSection></PetCareTipsSection>
+			<WhyChooseUs></WhyChooseUs>
 		</>
 	);
 }
