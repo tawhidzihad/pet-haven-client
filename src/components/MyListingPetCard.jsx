@@ -2,6 +2,7 @@ import DeleteModal from "@/UI/DeleteModal";
 import { Button, Chip } from "@heroui/react";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
+import Link from "next/link";
 import { BiEdit } from "react-icons/bi";
 import { FaRegEye } from "react-icons/fa";
 import { IoPeople } from "react-icons/io5";
@@ -22,6 +23,7 @@ const MyListingPetCard = ({ pet }) => {
 		breed,
 		age,
 		adoptionFee,
+		adoptionRequest,
 	} = pet;
 
 	return (
@@ -35,7 +37,7 @@ const MyListingPetCard = ({ pet }) => {
 					className="h-40 w-full object-cover group-hover:scale-108 transition-all duration-400 ease-in-out"
 				/>
 				<span className="absolute bottom-2 right-2">
-					<Chip color="accent">{`${"0 Request"}`}</Chip>
+					<Chip color="accent">{`${adoptionRequest} Request`}</Chip>
 				</span>
 			</div>
 
@@ -56,14 +58,17 @@ const MyListingPetCard = ({ pet }) => {
 				</div>
 
 				<div className="grid grid-cols-2 gap-3 mt-3">
-					<Button
-						size="sm"
-						variant="outline"
-						className={"w-full text-white font-normal"}
-					>
-						<FaRegEye />
-						View
-					</Button>
+					<Link href={`/all-pets/${_id}`}>
+						<Button
+							size="sm"
+							variant="outline"
+							className={"w-full text-white font-normal"}
+						>
+							<FaRegEye />
+							View
+						</Button>
+					</Link>
+
 					<Button
 						size="sm"
 						variant="outline"

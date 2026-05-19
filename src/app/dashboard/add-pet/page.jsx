@@ -23,7 +23,7 @@ const AddPetPage = () => {
 		const fromData = new FormData(e.currentTarget);
 		const petData = {
 			...Object.fromEntries(fromData.entries()),
-			adopted: false,
+			adopted: "",
 			adoptionRequest: 0,
 			userId: "1234245",
 		};
