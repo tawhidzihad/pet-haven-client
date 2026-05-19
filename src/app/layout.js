@@ -51,8 +51,8 @@ export default function RootLayout({ children }) {
 					<Navbar></Navbar>
 					<main>{children}</main>
 					<Footer></Footer>
+					<Toaster />
 				</NextThemeProvider>
-				<Toaster />
 			</body>
 		</html>
 	);

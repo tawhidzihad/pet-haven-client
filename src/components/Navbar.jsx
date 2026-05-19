@@ -73,13 +73,16 @@ export default function App() {
 
 				<div className="hidden items-center gap-4 md:flex">
 					<ThemeToggle></ThemeToggle>
+
 					<div className="flex items-center gap-4">
-						<Link href="/login">Login</Link>
+						<Link href="/dashboard">Dashboard</Link>
+
+						{/* <Link href="/login">Login</Link>
 						<Link href={"/signup"}>
 							<Button className={"bg-blue-500 font-normal"}>
 								Get Started <SiDatadog />
 							</Button>
-						</Link>
+						</Link> */}
 					</div>
 				</div>
 			</header>
@@ -93,12 +96,6 @@ export default function App() {
 						<li>
 							<NavLink href={"/all-pets"}>All Pets</NavLink>
 						</li>
-
-						{/* <li>
-							<NavLink href={"/login"} className={"inline-block"}>
-								Login
-							</NavLink>
-						</li> */}
 					</ul>
 					<div className="p-4 flex justify-between items-center gap-2 border-t">
 						<Link href={"/login"}>
