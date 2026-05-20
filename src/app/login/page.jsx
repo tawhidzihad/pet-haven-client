@@ -24,6 +24,7 @@ const LogInpage = () => {
 		const { data, error } = await authClient.signIn.email({
 			email: userData.email,
 			password: userData.password,
+			rememberMe: true,
 		});
 
 		if (error) {
@@ -33,7 +34,7 @@ const LogInpage = () => {
 
 		if (data) {
 			toast.success("Welcome back! Glad to see you again.");
-			redirect("/dashboard");
+			redirect("/");
 		}
 	};
 

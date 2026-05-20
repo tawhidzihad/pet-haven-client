@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BiEdit } from "react-icons/bi";
 import { FaRegEye } from "react-icons/fa";
-import { IoPeople } from "react-icons/io5";
+import { RequestsModal } from "./RequestsModal";
 
 const MyListingPetCard = ({ pet }) => {
 	const {
@@ -80,14 +80,7 @@ const MyListingPetCard = ({ pet }) => {
 						</Button>
 					</Link>
 
-					<Button
-						size="sm"
-						variant="secondary"
-						className={"w-full font-normal"}
-					>
-						<IoPeople />
-						Requests
-					</Button>
+					<RequestsModal pet={pet}></RequestsModal>
 
 					<DeleteModal pet={pet}></DeleteModal>
 				</div>

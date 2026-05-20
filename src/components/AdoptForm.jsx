@@ -10,7 +10,7 @@ import {
 	TextField,
 } from "@heroui/react";
 
-const AdoptForm = ({ pet }) => {
+const AdoptForm = ({ pet, user }) => {
 	const {
 		_id,
 		vaccinationStatus,
@@ -29,14 +29,16 @@ const AdoptForm = ({ pet }) => {
 		adoptionRequest,
 	} = pet;
 
+	// console.log(user);
+
 	const onSubmit = async (e) => {
 		e.preventDefault();
 		const fromData = new FormData(e.currentTarget);
 		const petData = {
 			...Object.fromEntries(fromData.entries()),
-			adopted: false,
-			adoptionRequest: 0,
-			userId: "1234245",
+			userName: user?.name,
+			userEmail: user?.email,
+			userId: user?.id,
 		};
 	};
 
@@ -56,7 +58,7 @@ const AdoptForm = ({ pet }) => {
 						<TextField name="userName" isRequired>
 							<Label>Your Name</Label>
 							<Input
-								value={"User Name"}
+								value={user?.name}
 								readOnly
 								className="rounded-2xl"
 							/>
@@ -69,7 +71,7 @@ const AdoptForm = ({ pet }) => {
 							<Input
 								type="email"
 								className="rounded-2xl"
-								value={"hfztauhid@gmail.com"}
+								value={user?.email}
 								readOnly
 							/>
 							<FieldError />
@@ -82,9 +84,9 @@ const AdoptForm = ({ pet }) => {
 							<FieldError />
 						</TextField>
 
-						{/* Description */}
-						<TextField name="description" isRequired>
-							<Label>Description</Label>
+						{/* Your Message */}
+						<TextField name="userMessage" isRequired>
+							<Label>Your Message</Label>
 							<TextArea
 								placeholder={`Tell the owner why you'd be a great match for ${petName} ...`}
 								className="rounded-xl"

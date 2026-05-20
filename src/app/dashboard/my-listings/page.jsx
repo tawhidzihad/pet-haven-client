@@ -1,8 +1,18 @@
 import MyListingPetCard from "@/components/MyListingPetCard";
-import { getPets } from "@/lib/apiService";
+import { getMyPets } from "@/lib/apiService";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 const MyListingsPage = async () => {
-	const allPets = await getPets();
+	const session = await auth.api.getSession({
+		headers: await headers(),
+	});
+	const user = session?.user;
+	
+	const allPets = await getMyPets(user?.id);
+
+	const available = allPets.filter((pet) => pet.adopted === false);
+	const adopted = allPets.filter((pet) => pet.adopted !== false);
 
 	return (
 		<div className="space-y-10 max-w-7xl mx-auto">
@@ -24,12 +34,16 @@ const MyListingsPage = async () => {
 					<h3 className="text-2xl text-green-500 font-medium">
 						Available
 					</h3>
-					<p className="text-3xl text-green-500 font-bold">0</p>
+					<p className="text-3xl text-green-500 font-bold">
+						{available.length}
+					</p>
 				</div>
 
 				<div className="flex flex-col justify-center items-center gap-4 border border-red-500/40 rounded-2xl p-5">
 					<h3 className="text-2xl text-red-500 font-medium">Adopted</h3>
-					<p className="text-3xl text-red-500 font-bold">0</p>
+					<p className="text-3xl text-red-500 font-bold">
+						{adopted.length}
+					</p>
 				</div>
 			</div>
 

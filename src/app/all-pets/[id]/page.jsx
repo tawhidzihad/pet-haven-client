@@ -1,15 +1,26 @@
 import AdoptForm from "@/components/AdoptForm";
 import { getThisPet } from "@/lib/apiService";
+import { auth } from "@/lib/auth";
 import { Chip } from "@heroui/react";
+import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
-import { FaLongArrowAltLeft, FaRegCalendarAlt } from "react-icons/fa";
+import {
+	FaCheckCircle,
+	FaLongArrowAltLeft,
+	FaRegCalendarAlt,
+} from "react-icons/fa";
 import { FiShield } from "react-icons/fi";
-import { IoLocationOutline } from "react-icons/io5";
+import { IoLocationOutline, IoWarningOutline } from "react-icons/io5";
 import { LuDollarSign } from "react-icons/lu";
 import { MdPerson, MdPets, MdVaccines } from "react-icons/md";
 
 const PetDetailsPage = async ({ params }) => {
+	const session = await auth.api.getSession({
+		headers: await headers(),
+	});
+	const user = session?.user;
+
 	const { id } = await params;
 	const pet = await getThisPet(id);
 
@@ -29,6 +40,7 @@ const PetDetailsPage = async ({ params }) => {
 		age,
 		adoptionFee,
 		adoptionRequest,
+		adopted,
 	} = pet;
 
 	return (
@@ -54,6 +66,7 @@ const PetDetailsPage = async ({ params }) => {
 									alt={petName}
 									width={400}
 									height={400}
+									loading="eager"
 									className="h-90 w-full object-cover group-hover:scale-108 transition-all duration-400 ease-in-out"
 								/>
 
@@ -224,7 +237,55 @@ const PetDetailsPage = async ({ params }) => {
 
 					{/* Right Side - Adopt Form */}
 					<div>
-						<AdoptForm pet={pet}></AdoptForm>
+						{user.email === ownerEmail ? (
+							<div className="flex items-center justify-center">
+								<div className="w-full rounded-3xl border border-blue-600/30 p-10 text-center">
+									{/* Content */}
+									<div className="space-y-2">
+										{/* Icon */}
+										<div className="flex justify-center items-center">
+											<IoWarningOutline className="h-20 w-20 text-yellow-400" />
+										</div>
+
+										{/* Title */}
+										<h2 className="text-3xl font-bold tracking-tight text-white">
+											This is your listing
+										</h2>
+
+										{/* Description */}
+										<p className="text-sm leading-relaxed text-slate-400">
+											You cannot request adoption for your own pet
+											listing.
+										</p>
+									</div>
+								</div>
+							</div>
+						) : adopted ? (
+							<div className="flex items-center justify-center">
+								<div className="w-full rounded-3xl border border-blue-600/30 p-10 text-center">
+									{/* Content */}
+
+									<div className="space-y-2">
+										{/* Icon */}
+										<div className="flex justify-center items-center">
+											<FaCheckCircle className="h-15 w-15 text-red-500" />
+										</div>
+
+										{/* Title */}
+										<h2 className="text-3xl font-semibold tracking-tight text-white">
+											{petName} has been adopted
+										</h2>
+
+										{/* Description */}
+										<p className="text-sm leading-relaxed text-slate-400">
+											This lovely pet has already found a new home
+										</p>
+									</div>
+								</div>
+							</div>
+						) : (
+							<AdoptForm pet={pet} user={user}></AdoptForm>
+						)}
 					</div>
 				</div>
 			</div>

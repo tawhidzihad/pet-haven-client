@@ -1,15 +1,19 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import NavLink from "@/UI/NavLink";
 import ThemeToggle from "@/UI/ThemeToggle";
-import { Button } from "@heroui/react";
+import { Button, Spinner } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { SiDatadog } from "react-icons/si";
+import { LoginUserDropDownMenu } from "./LoginUserDropDownMenu";
 
-export default function App() {
+export default function Navbar() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const { data: session, isPending } = authClient.useSession();
+	const user = session?.user;
 
 	return (
 		<nav className="sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg">
@@ -75,18 +79,27 @@ export default function App() {
 					<ThemeToggle></ThemeToggle>
 
 					<div className="flex items-center gap-4">
-						<Link href="/dashboard">Dashboard</Link>
-
-						{/* <Link href="/login">Login</Link>
-						<Link href={"/signup"}>
-							<Button className={"bg-blue-500 font-normal"}>
-								Get Started <SiDatadog />
-							</Button>
-						</Link> */}
+						{isPending ? (
+							<div className="flex items-center gap-4">
+								<Spinner />
+							</div>
+						) : user ? (
+							<LoginUserDropDownMenu user={user}></LoginUserDropDownMenu>
+						) : (
+							<>
+								<Link href="/login">Login</Link>
+								<Link href={"/signup"}>
+									<Button className={"bg-blue-500 font-normal"}>
+										Get Started <SiDatadog />
+									</Button>
+								</Link>
+							</>
+						)}
 					</div>
 				</div>
 			</header>
 
+			{/* For Mobile Device */}
 			{isMenuOpen && (
 				<div className="border-t md:hidden">
 					<ul className="flex flex-col gap-4 p-4">
@@ -97,18 +110,29 @@ export default function App() {
 							<NavLink href={"/all-pets"}>All Pets</NavLink>
 						</li>
 					</ul>
-					<div className="p-4 flex justify-between items-center gap-2 border-t">
-						<Link href={"/login"}>
-							<Button className={"bg-blue-500 font-normal w-full"}>
-								Login
-							</Button>
-						</Link>
 
-						<Link href={"/signup"}>
-							<Button className={"bg-blue-500 font-normal w-full"}>
-								Get Started <SiDatadog />
-							</Button>
-						</Link>
+					<div className="p-4 flex justify-between items-center gap-2 border-t">
+						{isPending ? (
+							<div className="flex items-center gap-4">
+								<Spinner />
+							</div>
+						) : user ? (
+							<LoginUserDropDownMenu user={user}></LoginUserDropDownMenu>
+						) : (
+							<>
+								<Link href={"/login"}>
+									<Button className={"bg-blue-500 font-normal w-full"}>
+										Login
+									</Button>
+								</Link>
+
+								<Link href={"/signup"}>
+									<Button className={"bg-blue-500 font-normal w-full"}>
+										Get Started <SiDatadog />
+									</Button>
+								</Link>
+							</>
+						)}
 					</div>
 				</div>
 			)}

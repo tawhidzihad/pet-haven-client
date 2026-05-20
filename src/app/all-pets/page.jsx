@@ -1,8 +1,8 @@
 import PetCard from "@/components/PetCard";
-import { getPets } from "@/lib/apiService";
+import { getAllPets } from "@/lib/apiService";
 
 const AllPetsPage = async () => {
-	const pets = await getPets();
+	const pets = await getAllPets();
 
 	return (
 		<div className="bg-[#002449] dark:bg-black py-20 px-5 lg:px-0">

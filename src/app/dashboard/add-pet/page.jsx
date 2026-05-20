@@ -1,6 +1,7 @@
 "use client";
 
 import { addPet } from "@/lib/apiService";
+import { authClient } from "@/lib/auth-client";
 import {
 	Button,
 	Card,
@@ -16,6 +17,8 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
 const AddPetPage = () => {
+	const { data: session } = authClient.useSession();
+	const user = session?.user;
 	const router = useRouter();
 
 	const onSubmit = async (e) => {
@@ -25,7 +28,8 @@ const AddPetPage = () => {
 			...Object.fromEntries(fromData.entries()),
 			adopted: false,
 			adoptionRequest: 0,
-			userId: "1234245",
+			userId: user?.id,
+			userName: user?.name,
 		};
 
 		const data = await addPet(petData);
@@ -279,9 +283,9 @@ const AddPetPage = () => {
 							<Label>Owner Email</Label>
 							<Input
 								type="email"
-								placeholder="owner@email.com"
+								placeholder={user?.email}
 								className="rounded-2xl"
-								value={"hfztauhid@gmail.com"}
+								value={user?.email}
 								readOnly
 							/>
 							<FieldError />

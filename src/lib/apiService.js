@@ -1,4 +1,4 @@
-// Create Operation
+// Add Pet Operation
 export const addPet = async (data) => {
 	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pet`, {
 		method: "POST",
@@ -10,7 +10,15 @@ export const addPet = async (data) => {
 	return res.json();
 };
 
-// Update One Operation
+// Get My Listing Pets Operation
+export const getMyPets = async (userId) => {
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_API_URL}/mypets/${userId}`,
+	);
+	return res.json();
+};
+
+// Update One Pet Operation
 export const editPetData = async (id, updatedData) => {
 	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pet/${id}`, {
 		method: "PATCH",
@@ -23,15 +31,15 @@ export const editPetData = async (id, updatedData) => {
 	return res.json();
 };
 
-// Get All Operation
-export const getPets = async () => {
+// Get All Pet Operation
+export const getAllPets = async () => {
 	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pet`, {
 		cache: "no-store",
 	});
 	return res.json();
 };
 
-// Get One Operation
+// Get One Pet Operation
 export const getThisPet = async (id) => {
 	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pet/${id}`, {
 		cache: "no-store",
@@ -39,7 +47,7 @@ export const getThisPet = async (id) => {
 	return res.json();
 };
 
-// Delete Operation
+// Delete One Pet Operation
 export const deletePets = async (id) => {
 	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pet/${id}`, {
 		method: "DELETE",
