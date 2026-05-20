@@ -69,14 +69,17 @@ const MyListingPetCard = ({ pet }) => {
 						</Button>
 					</Link>
 
-					<Button
-						size="sm"
-						variant="outline"
-						className={"w-full text-white font-normal"}
-					>
-						<BiEdit />
-						Edit
-					</Button>
+					<Link href={`/dashboard/my-listings/${_id}`}>
+						<Button
+							size="sm"
+							variant="outline"
+							className={"w-full text-white font-normal"}
+						>
+							<BiEdit />
+							Edit
+						</Button>
+					</Link>
+
 					<Button
 						size="sm"
 						variant="secondary"

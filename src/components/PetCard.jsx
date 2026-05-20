@@ -21,6 +21,7 @@ const PetCard = ({ pet }) => {
 		age,
 		adoptionFee,
 		adoptionRequest,
+		adopted,
 	} = pet;
 
 	return (
@@ -29,15 +30,16 @@ const PetCard = ({ pet }) => {
 				<Image
 					src={imageUrl}
 					alt={petName}
-					width={100}
-					height={100}
+					width={500}
+					height={500}
 					className="h-60 w-full object-cover group-hover:scale-108 transition-all duration-400 ease-in-out"
 				/>
 				<span className="absolute top-2 left-2">
-					<Chip color="success" className="bg-blue-600">
-						<Chip.Label className="text-white text-sm">
-							{species}
-						</Chip.Label>
+					<Chip
+						color="success"
+						className={`${adopted ? "bg-red-500" : "bg-blue-600"}`}
+					>
+						<Chip.Label className="text-white text-sm">{`${adopted ? "Adopted" : "Available"}`}</Chip.Label>
 					</Chip>
 				</span>
 			</div>

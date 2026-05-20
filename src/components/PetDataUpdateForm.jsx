@@ -1,6 +1,6 @@
 "use client";
 
-import { addPet } from "@/lib/apiService";
+import { editPetData } from "@/lib/apiService";
 import {
 	Button,
 	Card,
@@ -15,45 +15,52 @@ import {
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
-const AddPetPage = () => {
+const PetDataUpdateForm = ({ pet }) => {
 	const router = useRouter();
+
+	const {
+		_id,
+		vaccinationStatus,
+		userId,
+		species,
+		petName,
+		ownerEmail,
+		location,
+		imageUrl,
+		healthStatus,
+		gender,
+		description,
+		breed,
+		age,
+		adoptionFee,
+		adoptionRequest,
+		adopted,
+	} = pet;
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
 		const fromData = new FormData(e.currentTarget);
-		const petData = {
-			...Object.fromEntries(fromData.entries()),
-			adopted: false,
-			adoptionRequest: 0,
-			userId: "1234245",
-		};
+		const petUpdatedData = Object.fromEntries(fromData.entries());
+		const data = await editPetData(_id, petUpdatedData);
 
-		const data = await addPet(petData);
-
-		if (data.insertedId) {
-			toast.success("Your pet successfully posted for adoption");
+		if (data.modifiedCount) {
+			toast.success("Pet information updated successfully.");
 			router.push("/dashboard/my-listings");
 		}
 	};
 
 	return (
-		<div className="space-y-10">
-			<div className="text-center space-y-2">
-				<h1 className="text-2xl md:text-4xl font-bold text-blue-500">
-					Share Your Pet for <span className="text-white">Adoption</span>
-				</h1>
-				<p className="text-[15px] md:text-lg text-slate-500 dark:text-white/60 md:max-w-lg mx-auto leading-relaxed font-medium">
-					Fill in your pet’s details to help them find a loving and caring
-					new home.
-				</p>
-			</div>
-
+		<>
 			<Card className="rounded-xl">
 				<form className="md:p-10 space-y-8" onSubmit={onSubmit}>
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 						{/* Pet Name */}
 						<div className="md:col-span-2">
-							<TextField name="petName" isRequired>
+							<TextField
+								name="petName"
+								isRequired
+								defaultValue={petName}
+							>
 								<Label>Pet Name</Label>
 								<Input
 									placeholder="Enter pet name"
@@ -64,7 +71,7 @@ const AddPetPage = () => {
 						</div>
 
 						{/* Breed */}
-						<TextField name="breed" isRequired>
+						<TextField name="breed" isRequired defaultValue={breed}>
 							<Label>Breed</Label>
 							<Input
 								placeholder="Enter pet breed"
@@ -76,6 +83,7 @@ const AddPetPage = () => {
 						{/* Species */}
 						<div>
 							<Select
+								defaultValue={species}
 								name="species"
 								isRequired
 								className="w-full"
@@ -131,6 +139,7 @@ const AddPetPage = () => {
 								isRequired
 								className="w-full"
 								placeholder="Gender"
+								defaultValue={gender}
 							>
 								<Label>Gender</Label>
 
@@ -156,7 +165,7 @@ const AddPetPage = () => {
 						</div>
 
 						{/* Pet Age */}
-						<TextField name="age" isRequired>
+						<TextField name="age" isRequired defaultValue={age}>
 							<Label>Age</Label>
 							<Input
 								type="number"
@@ -173,6 +182,7 @@ const AddPetPage = () => {
 								isRequired
 								className="w-full"
 								placeholder="Health Status"
+								defaultValue={healthStatus}
 							>
 								<Label>Health Status</Label>
 
@@ -212,6 +222,7 @@ const AddPetPage = () => {
 								isRequired
 								className="w-full"
 								placeholder="Vaccination Status"
+								defaultValue={vaccinationStatus}
 							>
 								<Label>Vaccination Status</Label>
 
@@ -243,7 +254,11 @@ const AddPetPage = () => {
 						</div>
 
 						{/* Adoption Fee */}
-						<TextField name="adoptionFee" isRequired>
+						<TextField
+							name="adoptionFee"
+							isRequired
+							defaultValue={adoptionFee}
+						>
 							<Label>Adoption Fee</Label>
 							<Input
 								type="number"
@@ -254,7 +269,7 @@ const AddPetPage = () => {
 						</TextField>
 
 						{/* Location */}
-						<TextField name="location" isRequired>
+						<TextField name="location" isRequired defaultValue={location}>
 							<Label>Location</Label>
 							<Input
 								placeholder="Enter your location"
@@ -264,7 +279,7 @@ const AddPetPage = () => {
 						</TextField>
 
 						{/* Image URL */}
-						<TextField name="imageUrl" isRequired>
+						<TextField name="imageUrl" isRequired defaultValue={imageUrl}>
 							<Label>Image URL</Label>
 							<Input
 								type="url"
@@ -289,7 +304,11 @@ const AddPetPage = () => {
 
 						{/* Description */}
 						<div className="md:col-span-2">
-							<TextField name="description" isRequired>
+							<TextField
+								name="description"
+								isRequired
+								defaultValue={description}
+							>
 								<Label>Description</Label>
 								<TextArea
 									placeholder="Write short details about the pet"
@@ -305,12 +324,12 @@ const AddPetPage = () => {
 						type="submit"
 						className=" rounded-full w-full bg-blue-500 text-white font-normal"
 					>
-						Post for Adoption
+						Save Changes
 					</Button>
 				</form>
 			</Card>
-		</div>
+		</>
 	);
 };
 
-export default AddPetPage;
+export default PetDataUpdateForm;

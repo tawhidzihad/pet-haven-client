@@ -10,6 +10,19 @@ export const addPet = async (data) => {
 	return res.json();
 };
 
+// Update One Operation
+export const editPetData = async (id, updatedData) => {
+	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pet/${id}`, {
+		method: "PATCH",
+		headers: {
+			"content-type": "application/json",
+		},
+		body: JSON.stringify(updatedData),
+	});
+
+	return res.json();
+};
+
 // Get All Operation
 export const getPets = async () => {
 	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pet`, {
