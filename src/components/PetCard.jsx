@@ -74,11 +74,13 @@ const PetCard = ({ pet }) => {
 						View Details
 					</Button>
 				</Link>
-				<Button
-					className={"w-full bg-linear-to-tl from-blue-300 to-blue-500"}
-				>
-					Adopt Now
-				</Button>
+				<Link href={`/all-pets/${_id}`}>
+					<Button
+						className={"w-full bg-linear-to-tl from-blue-300 to-blue-500"}
+					>
+						Adopt Now
+					</Button>
+				</Link>
 			</div>
 		</div>
 	);

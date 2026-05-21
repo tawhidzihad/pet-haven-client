@@ -57,6 +57,7 @@ export default function Navbar() {
 								alt="Pet Haven Logo"
 								width={50}
 								height={50}
+								loading="eager"
 							/>
 						</Link>
 						<p className="font-semibold">Pet Haven</p>
