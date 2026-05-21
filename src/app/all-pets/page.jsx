@@ -1,12 +1,16 @@
+import FilterPortion from "@/components/FilterPortion";
 import PetCard from "@/components/PetCard";
+import SearchModal from "@/components/SearchPortion";
 import { getAllPets } from "@/lib/apiService";
 
-const AllPetsPage = async () => {
-	const pets = await getAllPets();
+const AllPetsPage = async ({ searchParams }) => {
+	const params = await searchParams;
+
+	const pets = await getAllPets(params?.search, params?.category);
 
 	return (
 		<div className="bg-[#002449] dark:bg-black py-20 px-5 lg:px-0">
-			<div className="max-w-7xl mx-auto space-y-15">
+			<div className="max-w-7xl mx-auto space-y-5">
 				<div className="text-center space-y-4">
 					<h2 className="text-3xl md:text-5xl text-blue-500 font-bold">
 						Find Pets for Adoption
@@ -17,11 +21,30 @@ const AllPetsPage = async () => {
 					</p>
 				</div>
 
-				<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-					{pets.map((pet) => (
-						<PetCard key={pet._id} pet={pet}></PetCard>
-					))}
+				<div className="flex flex-col gap-5 md:flex-row justify-between md:items-center md:gap-0">
+					<div className="flex">
+						<SearchModal></SearchModal>
+					</div>
+					<div className="flex">
+						<FilterPortion></FilterPortion>
+					</div>
 				</div>
+
+				<>
+					{pets.length === 0 ? (
+						<div className="text-center py-15">
+							<h1 className="text-white text-2xl font-bold">
+								No data Fount
+							</h1>
+						</div>
+					) : (
+						<div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+							{pets.map((pet) => (
+								<PetCard key={pet._id} pet={pet}></PetCard>
+							))}
+						</div>
+					)}
+				</>
 			</div>
 		</div>
 	);

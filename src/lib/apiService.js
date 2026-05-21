@@ -32,10 +32,13 @@ export const editPetData = async (id, updatedData) => {
 };
 
 // Get All Pet Operation
-export const getAllPets = async () => {
-	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pet`, {
-		cache: "no-store",
-	});
+export const getAllPets = async (search = "", category = "") => {
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_API_URL}/pet?search=${search}&category=${category}`,
+		{
+			cache: "no-store",
+		},
+	);
 	return res.json();
 };
 
