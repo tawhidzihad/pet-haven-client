@@ -15,91 +15,120 @@ export default async function MyRequestPage() {
 
 	return (
 		<>
-			<Table className="rounded-lg">
-				<Table.ScrollContainer>
-					<Table.Content aria-label="My Request" className="min-w-150">
-						{/* Table Header */}
-						<Table.Header>
-							<Table.Column isRowHeader>Pet Name</Table.Column>
-							<Table.Column>Request Date</Table.Column>
-							<Table.Column>Pickup Date</Table.Column>
-							<Table.Column>Status</Table.Column>
-							<Table.Column>Actions</Table.Column>
-						</Table.Header>
+			{allRequests.length === 0 ? (
+				<div className="flex flex-col items-center justify-center h-full text-center gap-4">
+					<h2 className="text-2xl font-semibold text-blue-500">
+						No Requests Yet
+					</h2>
 
-						<Table.Body>
-							{allRequests.map((request) => (
-								<Table.Row key={request._id}>
-									{/* Pet Name */}
-									<Table.Cell>{request.petName}</Table.Cell>
+					<p className="max-w-md text-muted">
+						You haven’t submitted any adoption requests yet. Explore
+						available pets and find your perfect companion.
+					</p>
 
-									{/* Requested Date*/}
-									<Table.Cell>
-										{new Date(
-											request.requestedDate,
-										).toLocaleDateString("en-US", {
-											month: "short",
-											day: "numeric",
-											year: "numeric",
-										})}
-									</Table.Cell>
+					<Link
+						href="/all-pets"
+						className={
+							"text-blue-500 hover:border-b border-blue-600 transition-all duration-300 ease-in-out"
+						}
+					>
+						Browse Pets
+					</Link>
+				</div>
+			) : (
+				<Table className="rounded-lg">
+					<Table.ScrollContainer>
+						<Table.Content aria-label="My Request" className="min-w-150">
+							{/* Table Header */}
+							<Table.Header>
+								<Table.Column isRowHeader>Pet Name</Table.Column>
+								<Table.Column>Request Date</Table.Column>
+								<Table.Column>Pickup Date</Table.Column>
+								<Table.Column>Status</Table.Column>
+								<Table.Column>Actions</Table.Column>
+							</Table.Header>
 
-									{/* Pickup Date */}
-									<Table.Cell>
-										{new Date(request.pickupDate).toLocaleDateString(
-											"en-US",
-											{
+							<Table.Body>
+								{allRequests.map((request) => (
+									<Table.Row key={request._id}>
+										{/* Pet Name */}
+										<Table.Cell>{request.petName}</Table.Cell>
+
+										{/* Requested Date*/}
+										<Table.Cell>
+											{new Date(
+												request.requestedDate,
+											).toLocaleDateString("en-US", {
 												month: "short",
 												day: "numeric",
 												year: "numeric",
-											},
-										)}
-									</Table.Cell>
+											})}
+										</Table.Cell>
 
-									{/* Adoption Status */}
-									<Table.Cell>
-										{request.adopted === "true" ? (
-											<Chip
-												size="sm"
-												className="bg-green-100 text-green-600"
-												variant="soft"
-											>
-												Approved
-											</Chip>
-										) : request.adopted === "false" ? (
-											<Chip size="sm" color="danger" variant="soft">
-												Pending
-											</Chip>
-										) : (
-											<Chip size="sm" color="warning" variant="flat">
-												Pending
-											</Chip>
-										)}
-									</Table.Cell>
+										{/* Pickup Date */}
+										<Table.Cell>
+											{new Date(
+												request.pickupDate,
+											).toLocaleDateString("en-US", {
+												month: "short",
+												day: "numeric",
+												year: "numeric",
+											})}
+										</Table.Cell>
 
-									<Table.Cell className={"flex items-center gap-2"}>
-										<div className="flex justify-end gap-2">
-											{/* Request Delete Button */}
-											<RequestCancelButton
-												requestId={request._id}
-												petId={request.petId}
-											></RequestCancelButton>
+										{/* Adoption Status */}
+										<Table.Cell>
+											{request.adopted === "true" ? (
+												<Chip
+													size="sm"
+													className="bg-green-100 text-green-600"
+													variant="soft"
+												>
+													Approved
+												</Chip>
+											) : request.adopted === "false" ? (
+												<Chip
+													size="sm"
+													color="danger"
+													variant="soft"
+												>
+													Pending
+												</Chip>
+											) : (
+												<Chip
+													size="sm"
+													color="warning"
+													variant="flat"
+												>
+													Pending
+												</Chip>
+											)}
+										</Table.Cell>
 
-											{/* View Button */}
-											<Link href={`/all-pets/${request.petId}`}>
-												<Button size="sm" variant="outline">
-													<Eye size={16} />
-													View
-												</Button>
-											</Link>
-										</div>
-									</Table.Cell>
-								</Table.Row>
-							))}
-						</Table.Body>
-					</Table.Content>
-				</Table.ScrollContainer>
-			</Table>
+										<Table.Cell className={"flex items-center gap-2"}>
+											<div className="flex justify-end gap-2">
+												{/* Request Delete Button */}
+												<RequestCancelButton
+													requestId={request._id}
+													petId={request.petId}
+												></RequestCancelButton>
+
+												{/* View Button */}
+												<Link href={`/all-pets/${request.petId}`}>
+													<Button size="sm" variant="outline">
+														<Eye size={16} />
+														View
+													</Button>
+												</Link>
+											</div>
+										</Table.Cell>
+									</Table.Row>
+								))}
+							</Table.Body>
+						</Table.Content>
+					</Table.ScrollContainer>
+				</Table>
+			)}
 		</>
 	);
 }
