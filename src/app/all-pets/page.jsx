@@ -9,7 +9,7 @@ const AllPetsPage = async ({ searchParams }) => {
 	const pets = await getAllPets(params?.search, params?.category);
 
 	return (
-		<div className="bg-[#002449] dark:bg-black py-20 px-5 lg:px-0">
+		<div className="bg-[#002449] dark:bg-black py-6 md:py-20 px-5 lg:px-0">
 			<div className="max-w-7xl mx-auto space-y-5">
 				<div className="text-center space-y-4">
 					<h2 className="text-3xl md:text-5xl text-blue-500 font-bold">
@@ -21,11 +21,11 @@ const AllPetsPage = async ({ searchParams }) => {
 					</p>
 				</div>
 
-				<div className="flex flex-col gap-5 md:flex-row justify-between md:items-center md:gap-0">
-					<div className="flex">
+				<div className="grid grid-cols-2 gap-5">
+					<div className="md:flex col-span-2 md:col-span-1">
 						<SearchModal></SearchModal>
 					</div>
-					<div className="flex">
+					<div className="flex justify-start md:justify-end col-span-2 md:col-span-1">
 						<FilterPortion></FilterPortion>
 					</div>
 				</div>

@@ -32,7 +32,7 @@ export function RequestsModal({ pet }) {
 		const data = await updatepetStatus(_id, adoptedStatus);
 
 		if (data.modifiedCount) {
-			toast.success("Adopdet");
+			toast.success("Adoption request approved successfully!");
 			await editPetData(petId, isAdopted);
 			setRequestsData((prev) =>
 				prev.map((item) =>
@@ -52,7 +52,7 @@ export function RequestsModal({ pet }) {
 		const data = await updatepetStatus(_id, adoptedStatus);
 
 		if (data.modifiedCount) {
-			toast.success("Adopdet");
+			toast.success("Adoption request rejected!");
 			await editPetData(petId, isAdopted);
 			setRequestsData((prev) =>
 				prev.map((item) =>

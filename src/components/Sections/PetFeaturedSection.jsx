@@ -1,12 +1,13 @@
 import { getAllPets } from "@/lib/apiService";
-import { Chip } from "@heroui/react";
+import { Button, Chip } from "@heroui/react";
+import Link from "next/link";
 import PetCard from "../PetCard";
 
 const PetFeaturedSection = async () => {
 	const allPets = await getAllPets();
 
 	return (
-		<div className="bg-[#002449] dark:bg-black py-10 px-5 lg:px-0">
+		<div className="bg-[#002449] dark:bg-black py-10 md:py-13 px-5 lg:px-0">
 			<div className="max-w-7xl mx-auto space-y-5">
 				<div className="text-center">
 					<Chip className="text-blue-500">Pets Looking for a Home</Chip>
@@ -24,9 +25,21 @@ const PetFeaturedSection = async () => {
 				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-7">
-					{allPets.map((pet) => (
+					{allPets.slice(0, 6).map((pet) => (
 						<PetCard key={pet._id} pet={pet}></PetCard>
 					))}
+				</div>
+
+				<div className="flex justify-center items-center mt-10">
+					<Link href={"/all-pets"}>
+						<Button
+							className={
+								"bg-blue-500 rounded hover:bg-blue-900 hover:scale-97 transition-all duration-300 ease-in-out"
+							}
+						>
+							Browse More
+						</Button>
+					</Link>
 				</div>
 			</div>
 		</div>

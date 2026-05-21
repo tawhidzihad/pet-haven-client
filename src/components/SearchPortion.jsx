@@ -23,8 +23,8 @@ export default function SearchModal() {
 	};
 
 	return (
-		<div className="flex items-center gap-2">
-			<SearchField name="search" aria-label="search" className="flex-1">
+		<div className="flex flex-col md:flex-row gap-1">
+			<SearchField name="search" aria-label="search" className="">
 				<SearchField.Group>
 					<SearchField.SearchIcon />
 
@@ -37,9 +37,11 @@ export default function SearchModal() {
 				</SearchField.Group>
 			</SearchField>
 
-			<Button className={"rounded-xl"} onClick={handleSearch}>
-				Search
-			</Button>
+			<div className="flex justify-center">
+				<Button className={"rounded-xl"} onClick={handleSearch}>
+					Search
+				</Button>
+			</div>
 		</div>
 	);
 }
