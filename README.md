@@ -2,8 +2,6 @@
 
 ## Pet Haven is a modern full-stack pet adoption platform built with the MERN Stack. The platform allows users to explore pets available for adoption, view detailed pet information, and submit adoption requests in a simple and user-friendly way, Authenticated users can manage their adoption requests, while pet owners or shelters can add, update, and manage pet listings efficiently through a secure dashboard. The platform also includes JWT authentication, protected routes, responsive design, advanced search & filtering, and real-time adoption request management. Pet Haven aims to create a safe and seamless experience for connecting loving families with pets in need of a forever home.
 
-### Key Features
-
 ## Key Features
 
 - Secure JWT Authentication with HTTPOnly Cookies
@@ -27,6 +25,7 @@
 - NextJS
 - TailwindCSS
 - HeroUI
+- Next Themes
 - BetterAuth
 - MongoDB
 - JWT (JSON Web Token)
