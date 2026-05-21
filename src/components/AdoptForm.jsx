@@ -46,7 +46,7 @@ const AdoptForm = ({ pet, user }) => {
 			...Object.fromEntries(fromData.entries()),
 			petId: _id,
 			requestedDate: new Date(),
-			adopted: null,
+			adoptedStatus: "pending",
 			userName: user?.name,
 			userEmail: user?.email,
 			userId: user?.id,
@@ -128,17 +128,6 @@ const AdoptForm = ({ pet, user }) => {
 					</form>
 				</Card>
 			) : (
-				// <Card className="rounded-xl p-10 text-center space-y-4">
-				// 	<h2 className="text-2xl font-semibold text-green-500">
-				// 		Request Submitted Successfully
-				// 	</h2>
-
-				// 	<p className="text-default-500">
-				// 		Your adoption request for Duke has been sent to the owner. You
-				// 		can track its status in My Requests.
-				// 	</p>
-				// </Card>
-
 				<div className="flex items-center justify-center">
 					<div className="w-full rounded-3xl border border-blue-600/30 p-10 text-center">
 						{/* Content */}

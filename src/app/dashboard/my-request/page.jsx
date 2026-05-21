@@ -78,7 +78,7 @@ export default async function MyRequestPage() {
 
 										{/* Adoption Status */}
 										<Table.Cell>
-											{request.adopted === "true" ? (
+											{request.adoptedStatus === "approved" ? (
 												<Chip
 													size="sm"
 													className="bg-green-100 text-green-600"
@@ -86,13 +86,13 @@ export default async function MyRequestPage() {
 												>
 													Approved
 												</Chip>
-											) : request.adopted === "false" ? (
+											) : request.adoptedStatus === "rejected" ? (
 												<Chip
 													size="sm"
 													color="danger"
 													variant="soft"
 												>
-													Pending
+													Rejected
 												</Chip>
 											) : (
 												<Chip
@@ -108,10 +108,13 @@ export default async function MyRequestPage() {
 										<Table.Cell className={"flex items-center gap-2"}>
 											<div className="flex justify-end gap-2">
 												{/* Request Delete Button */}
-												<RequestCancelButton
-													requestId={request._id}
-													petId={request.petId}
-												></RequestCancelButton>
+
+												{request.adoptedStatus === "pending" && (
+													<RequestCancelButton
+														requestId={request._id}
+														petId={request.petId}
+													></RequestCancelButton>
+												)}
 
 												{/* View Button */}
 												<Link href={`/all-pets/${request.petId}`}>

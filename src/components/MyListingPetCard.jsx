@@ -7,7 +7,7 @@ import { BiEdit } from "react-icons/bi";
 import { FaRegEye } from "react-icons/fa";
 import { RequestsModal } from "./RequestsModal";
 
-const MyListingPetCard = ({ pet }) => {
+const MyListingPetCard = async ({ pet }) => {
 	const {
 		_id,
 		vaccinationStatus,

@@ -75,21 +75,6 @@ export const adoptionRequestCountPlus = async (_id) => {
 	return res.json();
 };
 
-// Adoption Request Count -1
-export const adoptionRequestCountMinus = async (_id) => {
-	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_API_URL}/adoption-request-count-remove/${_id}`,
-		{
-			method: "PATCH",
-			headers: {
-				"content-type": "application/json",
-			},
-		},
-	);
-
-	return res.json();
-};
-
 // Create Adoption Request
 export const createAdoptionRequest = async (adoptionRequestData) => {
 	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/adoption`, {
@@ -100,6 +85,29 @@ export const createAdoptionRequest = async (adoptionRequestData) => {
 		body: JSON.stringify(adoptionRequestData),
 	});
 
+	return res.json();
+};
+
+export const updatepetStatus = async (requestId, updatedStatus) => {
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_API_URL}/update-status/${requestId}`,
+		{
+			method: "PATCH",
+			headers: {
+				"content-type": "application/json",
+			},
+			body: JSON.stringify(updatedStatus),
+		},
+	);
+	return res.json();
+};
+
+// Get Paricular User Pet Adoption Request
+export const getMyPetAllRequests = async (petId) => {
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_API_URL}/my-pet-adoption-requests/${petId}`,
+		{ cache: "no-store" },
+	);
 	return res.json();
 };
 
