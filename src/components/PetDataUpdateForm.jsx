@@ -279,28 +279,21 @@ const PetDataUpdateForm = ({ pet }) => {
 						</TextField>
 
 						{/* Image URL */}
-						<TextField name="imageUrl" isRequired defaultValue={imageUrl}>
-							<Label>Image URL</Label>
-							<Input
-								type="url"
-								placeholder="https://example.com/buno.jpg"
-								className="rounded-2xl"
-							/>
-							<FieldError />
-						</TextField>
-
-						{/* Owner Email */}
-						<TextField name="ownerEmail" isRequired>
-							<Label>Owner Email</Label>
-							<Input
-								type="email"
-								placeholder="owner@email.com"
-								className="rounded-2xl"
-								value={"hfztauhid@gmail.com"}
-								readOnly
-							/>
-							<FieldError />
-						</TextField>
+						<div className="md:col-span-2">
+							<TextField
+								name="imageUrl"
+								isRequired
+								defaultValue={imageUrl}
+							>
+								<Label>Image URL</Label>
+								<Input
+									type="url"
+									placeholder="https://example.com/buno.jpg"
+									className="rounded-2xl"
+								/>
+								<FieldError />
+							</TextField>
+						</div>
 
 						{/* Description */}
 						<div className="md:col-span-2">

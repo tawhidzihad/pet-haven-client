@@ -280,7 +280,7 @@ const AddPetPage = () => {
 
 						{/* Owner Email */}
 						<TextField name="ownerEmail" isRequired>
-							<Label>Owner Email</Label>
+							<Label>Your Email Address</Label>
 							<Input
 								type="email"
 								placeholder={user?.email}
